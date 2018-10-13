@@ -1,0 +1,18 @@
+<form {{action "submit" on="submit"}}>
+  {{#if error}}
+    {{#bs-alert type="danger" dismissible=false}}{{error}}{{/bs-alert}}
+  {{else if success}}
+    {{#bs-alert type="success" dismissible=false}}{{t "recovery-mail-sent"}}{{/bs-alert}}
+  {{/if}}
+
+  {{validated-input
+    value=email
+    validation=validations.attrs.email
+    label=(t "email-address")
+    disabled=recoverTask.isRunning
+    didValidate=didValidate}}
+
+  <button class="btn btn-primary btn-block" type="submit" disabled={{or recoverTask.isRunning success (not validations.isValid)}}>
+    {{t (if recoverTask.isRunning "recovering" "recover-password")}}
+  </button>
+</form>

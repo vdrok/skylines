@@ -1,0 +1,33 @@
+<form {{action (perform loginTask) on="submit"}} class="form-login">
+  {{#if (and error (not inline))}}
+    {{#bs-alert type="danger" dismissible=false}}{{t "wrong-credentials"}}{{/bs-alert}}
+  {{/if}}
+
+  {{validated-input
+    value=email
+    label=(t "email-address")
+    autocomplete="email"
+    disabled=loginTask.isRunning
+    forceErrorClass=error
+    didValidate=didValidate
+    testSelector="login-email"}}
+
+  {{validated-input
+    type='password'
+    value=password
+    label=(t "password")
+    autocomplete="current-password"
+    disabled=loginTask.isRunning
+    forceErrorClass=error
+    didValidate=didValidate
+    testSelector="login-password"}}
+
+  <button class="btn btn-primary btn-block" type="submit" disabled={{loginTask.isRunning}} data-test-login-button>
+    {{t "login"}}
+  </button>
+
+  <hr/>
+
+  <div>{{link-to (t "forgot-password") "users.recover"}}</div>
+  <div>{{link-to (t "dont-have-an-account") "users.new"}}</div>
+</form>
