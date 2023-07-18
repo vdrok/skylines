@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "ember-awesome-macros": "^2.0.0",
-    "remarkable": "^1.7.1"
+    "remarkable": "^1.7.2"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.7.0",
